@@ -12,4 +12,4 @@ const View = (props) => {
     )
 }
 
-export default Imbue(View, State);
+export default Imbue(View, "header");

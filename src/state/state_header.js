@@ -1,4 +1,4 @@
 export default {
-    text: "hello state manager",
-    description: "statemanager with context!"
+    text: "The header",
+    description: "...and the description"
 };  

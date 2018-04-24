@@ -7,17 +7,9 @@ const Imbue = (View, state) => {
         ()=>
         <Reader>
             { 
-                context => <View {...state}/> 
+                context => <View {...context[state]}/> 
             }
         </Reader>
     )
 }
 export {Writer, Reader, Imbue}
-
-// { 
-//     context => {
-//         var mappedState = context;
-//         state.split(".").forEach((step)=>mappedState=mappedState[step])
-//         return <View {...mappedState}/> 
-//     }
-// }
