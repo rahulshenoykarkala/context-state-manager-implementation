@@ -5,9 +5,15 @@ const Reader = StateManager.Consumer;
 const Imbue = (View, state) => {
     return (
         ()=>
-        <Reader>
+        <Reader>          
             { 
-                context => <View {...context[state]}/> 
+                context => {
+                    var mappedState = context;
+                    debugger;
+                    state.split(".").forEach((step)=>mappedState=mappedState[step])
+                    console.log(mappedState)
+                    return <View {...mappedState}/> 
+                }
             }
         </Reader>
     )
