@@ -1,11 +1,12 @@
-import { Reader } from './contextwrapper'
+import { Imbue } from './contextwrapper'
 import React from 'react'
-export default function(){
-    return (
-        <ul className="changelog">
-            <Reader>
-                {context => context.body.changelog.map((change)=><li key={change.ts}>{change.text}</li>)}
-            </Reader>
-        </ul>
-    )
-}
+
+const View = ({changes, count}) => 
+<div>
+    <ul className="changelog">
+        <li className="change_count"> {count} changes so far </li>
+        {changes && changes.map((change)=><li key={change.ts}>{change.text}</li>)}
+    </ul>
+</div>
+export default Imbue(View, "body.changelog")
+

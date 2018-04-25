@@ -27,7 +27,16 @@ class App extends Component {
         this.setState({header:{...this.state.header, description:description}})
       },
       logChange: (text, ts)=>{
-        this.setState({body:{...this.state.body, changelog:[...this.state.body.changelog, {text:text, ts:ts}]}})
+        this.setState({body:
+          {...this.state.body, 
+            changelog: {...this.state.body.changelog, 
+              changes: [...this.state.body.changelog.changes, 
+                {text:text, ts:ts}
+              ], 
+              count: this.state.body.changelog.count + 1
+            }
+          }
+        })
       }
     }
   }
