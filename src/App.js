@@ -3,7 +3,6 @@ import logo from './logo.svg';
 import './App.css';
 import { Writer } from './contextwrapper';
 import Header from './header';
-import Input from './input';
 import Body from './body'
 import AppState from './state/state'
 
@@ -54,7 +53,6 @@ class App extends Component {
         <Writer context={this.state} component={
         <div>
             <Header/>
-            <Input/>
             <Body/>
         </div>
         }/>
