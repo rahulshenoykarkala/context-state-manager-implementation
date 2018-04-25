@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import { Imbue } from './contextwrapper';
 import State from './state/state_header'
 
-const View = (props) => {
-    const { text, description } = props;
+const View = ({ text, description }) => {
     return (
         <div>
             <h1>{text}</h1>
@@ -12,4 +11,4 @@ const View = (props) => {
     )
 }
 
-export default Imbue(View, "header");
+export default Imbue(View)("header")();

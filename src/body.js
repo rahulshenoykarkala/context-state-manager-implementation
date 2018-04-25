@@ -10,5 +10,5 @@ const View = ({changes, count}) =>
         {changes && changes.map((change)=><li key={change.ts}>{change.text}</li>)}
     </ul>
 </div>
-export default Imbue(View, "body.changelog")
+export default Imbue(View)("body.changelog")()
 

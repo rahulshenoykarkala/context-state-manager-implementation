@@ -11,34 +11,37 @@ class App extends Component {
     super(props);
     this.state = {
       ...AppState,
-      ...this.methods()
     }
-  }
-  
-  methods(){
-    return {
-      changeHeaderText:(text, ts)=>{
-        this.state.logChange(`Text changed from "${this.state.header.text}" to "${text}"`, ts)
-        this.setState({header:{...this.state.header, text:text}})
+
+    this.actions = {
+      header:{
+        changeHeaderText:(text, ts)=>{
+          this.actions.body.changelog.log(`Text changed from "${this.state.header.text}" to "${text}"`, ts)
+          this.setState({header:{...this.state.header, text:text}})
+        },
+        changeDescription:(description, ts)=>{
+          this.actions.body.changelog.log(`Description changed from "${this.state.header.description}" to "${description}"`, ts)
+          this.setState({header:{...this.state.header, description:description}})
+        }
       },
-      changeDescription:(description, ts)=>{
-        this.state.logChange(`Description changed from "${this.state.header.description}" to "${description}"`, ts)
-        this.setState({header:{...this.state.header, description:description}})
-      },
-      logChange: (text, ts)=>{
-        this.setState({body:
-          {...this.state.body, 
-            changelog: {...this.state.body.changelog, 
-              changes: [...this.state.body.changelog.changes, 
-                {text:text, ts:ts}
-              ], 
-              count: this.state.body.changelog.count + 1
-            }
+      body:{
+        changelog:{
+          log: (text, ts)=>{
+            this.setState({body:
+              {...this.state.body, 
+                changelog: {...this.state.body.changelog, 
+                  changes: [...this.state.body.changelog.changes, 
+                    {text:text, ts:ts}
+                  ], 
+                  count: this.state.body.changelog.count + 1
+                }
+              }
+            })
           }
-        })
+        }
       }
     }
-  }
+  } 
 
   render() {
     return (
@@ -50,7 +53,7 @@ class App extends Component {
         <p className="App-intro">
             To get started, edit <code>src/App.js</code> and save to reload.
         </p>
-        <Writer context={this.state} component={
+        <Writer state={this.state} actions={this.actions} component={
         <div>
             <Header/>
             <Body/>
