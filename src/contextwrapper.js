@@ -9,9 +9,8 @@ const Imbue = (View, state) => {
             { 
                 context => {
                     var mappedState = context;
-                    debugger;
+                    if(state === undefined) return <View {...context}/>
                     state.split(".").forEach((step)=>mappedState=mappedState[step])
-                    console.log(mappedState)
                     return <View {...mappedState}/> 
                 }
             }
